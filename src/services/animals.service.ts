@@ -12,6 +12,14 @@ class AnimalService {
     getAllAnimals(): Array<Animal> {
         return this.animals
     }
+
+    getAnimalById(animalId: number): Animal | null {
+    const animalIndex: number = this.animals.findIndex(animal => animal.id === animalId);
+    if (animalIndex === -1) {
+        return null;
+    }
+    return this.animals[animalIndex];
+    }
 }
 
 export const animalService = new AnimalService()
