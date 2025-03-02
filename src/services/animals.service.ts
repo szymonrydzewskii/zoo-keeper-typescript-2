@@ -20,6 +20,12 @@ class AnimalService {
     }
     return this.animals[animalIndex];
     }
+
+    createAnimal(name:string, species:string, age: number, isEndangered: boolean, habitat: string): Animal | null {
+        const newAnimals: Animal = {id: this.animals.length+1, name, species, age, isEndangered, habitat}
+        this.animals.push(newAnimals);
+        return newAnimals;
+    }
 }
 
 export const animalService = new AnimalService()

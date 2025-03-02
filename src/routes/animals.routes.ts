@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.get("/", AnimalsControllers.getAllAnimals);
 router.get("/:id", AnimalsControllers.getAnimalById)
+router.post("/", AnimalsControllers.createAnimal)
 
 
 export default router;

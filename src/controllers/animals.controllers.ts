@@ -8,13 +8,23 @@ class AnimalsControllers{
     }
 
     static getAnimalById = (req: Request, res: Response) => {
-        const userId = parseInt(req.params.id)
-        const user = animalService.getAnimalById(userId)
+        const animalId = parseInt(req.params.id)
+        const animal = animalService.getAnimalById(animalId)
 
-        if(!user){
-            res.status(400).json({message: "User not found"})
+        if(!animal){
+            res.status(400).json({message: "Animal not found"})
         }
-        res.json({message: "User found", user: user})
+        res.json({message: "Animal found", animal: animal})
+    }
+
+    static createAnimal = (req: Request, res: Response) => {
+        const {name, species, age, isEndangered, habitat} = req.body;
+        if(!name || !species || !age || !isEndangered || !habitat){
+            res.status(400).json({message: "Missing required field"})
+            return
+        }
+        const newAnimal = animalService.createAnimal(name, species, age, isEndangered, habitat)
+        res.status(200).json({message: "A new animal added", animal: newAnimal})
 
     }
 }
