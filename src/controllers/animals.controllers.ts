@@ -25,7 +25,24 @@ class AnimalsControllers{
         }
         const newAnimal = animalService.createAnimal(name, species, age, isEndangered, habitat)
         res.status(200).json({message: "A new animal added", animal: newAnimal})
+    }
 
+    static updateAnimal = (req: Request, res: Response) : void => {
+        const animalId: number = parseInt(req.params.id)
+        console.log(`to jest id= ${animalId}`)
+        const {name, species, age, isEndangered, habitat} = req.body
+
+        if (!name || !species || !age || !isEndangered || !habitat) {
+            res.status(400).json({message: "Missing required field"})
+            return
+        }
+
+        const updatedAnimal = animalService.updateAnimal(animalId, name, species, age, isEndangered, habitat)
+        if(!updatedAnimal){
+            res.status(400).json({message: "Animal not found"})
+        }
+
+        res.status(200).json({message: "Animal updated", animal: updatedAnimal})
     }
 }
 

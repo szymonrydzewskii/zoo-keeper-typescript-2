@@ -7,6 +7,7 @@ app.use(express.json())
 app.use("/", router);
 app.use("/:id", router);
 app.post("/", router);
+app.put("/:id", router);
 
 
 

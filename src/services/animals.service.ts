@@ -25,6 +25,17 @@ class AnimalService {
         const newAnimals: Animal = {id: this.animals.length+1, name, species, age, isEndangered, habitat}
         this.animals.push(newAnimals);
         return newAnimals;
+
+    }
+    updateAnimal(id:number, name:string, species:string, age: number, isEndangered: boolean, habitat: string): Animal | null{
+        const animalIndex: number = this.animals.findIndex(animal => animal.id === id)
+        if (animalIndex === -1) {
+            return null;
+        }
+
+        this.animals[animalIndex] = {...this.animals[animalIndex], name, species, age, isEndangered, habitat};
+
+        return  this.animals[animalIndex]
     }
 }
 
